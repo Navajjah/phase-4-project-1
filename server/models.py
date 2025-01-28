@@ -1,5 +1,5 @@
-from config import db
 from sqlalchemy_serializer import SerializerMixin
+from server.config import db
 
 class Book(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +24,7 @@ favorites = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True)
 )
+
 class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)

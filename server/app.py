@@ -1,16 +1,20 @@
 from flask import Flask
-from flask_cors import CORS
-from flask_restful import Api
-from config import db
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db.init_app(app)
-migrate = Migrate(app, db)
-api = Api(app)
+from flask_restful import Resource
+from server.config import app, db, api
+from resources.books import BookList, BookDetail
+from resources.review import ReviewList
+from resources.users import UserList, UserDetail
 
 
-CORS(app)
 
+@app.route('/')
+def home():
+    return "<h1>Library API</h1>"
+
+api.add_resource(BookList, '/books')
+api.add_resource(BookDetail, '/books/<int:book_id>')
+
+api.add_resource(ReviewList, '/reviews')
+
+if __name__ == "__main__":
+    app.run(port=5555, debug=True)
