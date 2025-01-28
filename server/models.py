@@ -19,6 +19,9 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.Integer, nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
 
+    def __repr__(self):
+        return f"Review('{self.content}', '{self.rating}')"
+
 favorites = db.Table(
     'favorites',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -29,3 +32,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
     favorites = db.relationship('Book', secondary=favorites, backref='liked_by')
+    reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f"User('{self.username}')"

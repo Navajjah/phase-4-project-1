@@ -1,14 +1,14 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from server.config import db
-from models import Review
+from server.models import Review
 
 class ReviewList(Resource):
     def post(self):
         data = request.get_json()
         new_review = Review(
-            content=data['content']
-            rating=data['rating']
+            content=data['content'],
+            rating=data['rating'],
             book_id=data['book_id']
         )
         db.session.add(new_review)

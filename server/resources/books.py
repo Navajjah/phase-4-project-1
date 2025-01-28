@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from server.config import db
-from models import Book
+from server.models import Book
 
 class BookList(Resource):
     def get(self):
@@ -24,6 +24,8 @@ class BookList(Resource):
 class BookDetail(Resource):
     def get(self, book_id):
         book = Book.query.get(book_id)
+        if not book:
+            return {'message': 'Book not found'}, 404
         return jsonify(book.to_dict())
     
     def put(self, book_id):
