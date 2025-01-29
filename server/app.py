@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_restful import Resource
 from server.config import app, db, api
-from resources.books import BookList, BookDetail
-from resources.review import ReviewList
-from resources.users import UserList, UserDetail
+from server.resources.books import BookList, BookDetail
+from server.resources.review import ReviewList
+#from resources.users import UserList, UserDetail
 
 
 
