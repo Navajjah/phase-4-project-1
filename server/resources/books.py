@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from server.config import db
-from server.models import Book
+from config import db
+from models import Book
 
 class BookList(Resource):
     def get(self):
         books = Book.query.all()
-        return jsonify([book.to_dict() for book in books])
+        return ([book.to_dict() for book in books])
     
     def post(self):
         data = request.get_json()

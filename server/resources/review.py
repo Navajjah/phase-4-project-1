@@ -1,11 +1,18 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from server.config import db
-from server.models import Review
+from config import db
+from models import Review
 
 class ReviewList(Resource):
+    def get(self):
+        reviews = Review.query.all()
+        return jsonify([review.to_dict() for review in reviews])
+    
     def post(self):
         data = request.get_json()
+
+        if not all (key in data for key in ['content','rating', 'book_id', 'user_id']):
+            return {'message': 'Missing required fields'}, 400
         new_review = Review(
             content=data['content'],
             rating=data['rating'],
@@ -14,7 +21,8 @@ class ReviewList(Resource):
         db.session.add(new_review)
         db.session.commit()
         return jsonify(new_review.to_dict())
-    
+
+class ReviewDetail(Resource):
     def put(self,review_id):
         data = request.get_json()
         review = Review.query.get(review_id)

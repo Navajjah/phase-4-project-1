@@ -1,5 +1,5 @@
 from sqlalchemy_serializer import SerializerMixin
-from server.config import db
+from config import db
 
 class Book(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,7 +12,17 @@ class Book(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"Book('{self.title}', '{self.rarity}', '{self.spell_type}', '{self.author}','{self.hogwarts_class}')"
-    
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'rarity': self.rarity,
+            'spell_type': self.spell_type,
+            'author': self.author,
+            'hogwarts_class': self.hogwarts_class,
+        }
+
 class Review(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
@@ -22,6 +32,15 @@ class Review(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"Review('{self.content}', '{self.rating}')"
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'rating': self.rating,
+            'book_id': self.book_id,
+            'user_id': self.user_id,
+        }
 
 favorites = db.Table(
     'favorites',
@@ -37,3 +56,9 @@ class User(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"User('{self.username}')"
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+        }

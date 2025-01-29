@@ -14,6 +14,8 @@ metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
 db = SQLAlchemy(metadata=metadata)
+
+from models import Book, Review, User
 db.init_app(app)
 migrate = Migrate(app, db)
 
