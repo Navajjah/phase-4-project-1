@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import './BookList.css'
 
 function BookList() {
     const [books, setBooks] = useState([])
@@ -16,7 +17,7 @@ function BookList() {
             <ul className='book-list'>
                 {books.map(book => (
                    <li>
-                    <Link to={'/books/${book.id}'}></Link>
+                    <Link to={`/books/${book.id}`}></Link>
                    </li> 
                 ))}
             </ul>

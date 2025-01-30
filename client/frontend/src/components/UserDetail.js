@@ -1,6 +1,7 @@
 // src/components/UserDetail.jsx
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import './UserDetail.css'
 
 function UserDetail() {
   const { id } = useParams(); // Extract the id parameter from the URL

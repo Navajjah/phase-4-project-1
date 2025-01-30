@@ -1,0 +1,11 @@
+.user-display {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-display h1 {
+    color: #333;
+}

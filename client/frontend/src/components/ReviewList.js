@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import './ReviewList.css'
 
 function ReviewList() {
     const [reviews, setReviews] = useState([])

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import './NewReviewForm.css'
 
 const NewReviewForm = () => {
   const validationSchema = Yup.object({
@@ -11,7 +12,7 @@ const NewReviewForm = () => {
   })
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    fetch('/reviews', {
+    fetch('http://127.0.0.1:5000/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),

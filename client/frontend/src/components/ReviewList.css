@@ -1,0 +1,17 @@
+.review-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.review-list p {
+    margin: 0;
+    color: #333;
+}

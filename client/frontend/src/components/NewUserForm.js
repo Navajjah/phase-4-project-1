@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import './NewUserForm.css'
 
 const NewUserForm = () => {
   const validationSchema = Yup.object({
@@ -8,7 +9,7 @@ const NewUserForm = () => {
   })
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    fetch('/users', {
+    fetch('http://127.0.0.1:5000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),

@@ -9,18 +9,21 @@ import UserDetail from './components/UserDetail'
 import NewUserForm from './components/NewUserForm'
 import ReviewList from './components/ReviewList'
 import NewReviewForm from './components/NewReviewForm'
-//import './App.css'
-import './styles.css' // Importing the new styles.css
+import './styles.css'; // Importing the new styles.css
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' exact component={BookList} />
-        <Route path='/users' exact component={UserList} />
-        <Route path='/reviews' exact component={ReviewList} />
-        <Route path='/new-review' component={NewReviewForm} />
+        <Route path='/' element={<BookList />} />
+        <Route path='/users' element={<UserList />} />
+        <Route path='/reviews' element={<ReviewList />} />
+        <Route path='/new-review' element={<NewReviewForm />} />
+        <Route path='/books/new' element={<NewBookForm />} />
+        <Route path='/users/:id' element={<UserDetail />} />
+        <Route path='/books/:id' element={<BookDetail />} />
+        <Route path='/users/new' element={<NewUserForm />} />
       </Routes>
     </Router>
   );

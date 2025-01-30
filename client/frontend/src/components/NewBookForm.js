@@ -1,6 +1,7 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import './NewBookForm.css'
 
 const NewBookForm = () => {
   const validationSchema = Yup.object({
@@ -9,20 +10,20 @@ const NewBookForm = () => {
     spell_type: Yup.string().required('Spell Type is required'),
     author: Yup.string().required('Author is required'),
     hogwarts_class: Yup.string().required('Hogwarts Class is required'),
-  });
+  })
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    fetch('/books', {
+    fetch('http://127.0.0.1:5000/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),
-    }).then(response => response.json())
+    }).then(resp => resp.json())
       .then(data => {
         console.log('Book added:', data);
         setSubmitting(false);
         resetForm();
-      });
-  };
+      })
+  }
 
   return (
     <Formik
@@ -64,7 +65,7 @@ const NewBookForm = () => {
         </div>
       )}
     </Formik>
-  );
-};
+  )
+}
 
 export default NewBookForm;

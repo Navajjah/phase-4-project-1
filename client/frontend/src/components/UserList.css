@@ -1,0 +1,17 @@
+.user-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin: 10px 0;
+}
+
+.user-list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.user-list a:hover {
+    text-decoration: underline;
+}

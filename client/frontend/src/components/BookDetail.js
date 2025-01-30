@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import './BookDetail.css'
 
 function BookDetail() {
     const { id } = useParams()
     const [book, setBook] = useState(null)
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/books/${id}')
+        fetch(`http://127.0.0.1:5000/books/${id}`)
         .then(resp => resp.json())
         .then(data => setBook(data))
     }, [id])
