@@ -17,7 +17,7 @@ function BookList() {
             <ul className='book-list'>
                 {books.map(book => (
                    <li>
-                    <Link to={`/books/${book.id}`}></Link>
+                    <Link to={`/books/${book.id}`}>{book.title}</Link>
                    </li> 
                 ))}
             </ul>
