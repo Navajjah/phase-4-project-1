@@ -1,0 +1,256 @@
+/* Basic styles for the React app */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.nav-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.nav-bar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-bar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-bar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.loading {
+    text-align: center;
+    font-size: 20px;
+    color: #666;
+}
+
+/* Styles for BookList component */
+.book-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-list li {
+    margin: 10px 0;
+}
+
+.book-list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.book-list a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for BookDetail component */
+.book-detail {
+    margin: 20px 0;
+}
+
+.book-detail h1 {
+    color: #333;
+}
+
+.book-detail p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Styles for NewBookForm component */
+.book-form {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-form h2 {
+    color: #333;
+}
+
+.book-form div {
+    margin-bottom: 15px;
+}
+
+.book-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.book-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.book-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.book-form button:disabled {
+    background-color: #ccc;
+}
+
+/* Styles for NewReviewForm component */
+.review-form {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-form h2 {
+    color: #333;
+}
+
+.review-form div {
+    margin-bottom: 15px;
+}
+
+.review-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.review-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.review-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.review-form button:disabled {
+    background-color: #ccc;
+}
+
+/* Styles for NewUserForm component */
+.user-form {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-form h2 {
+    color: #333;
+}
+
+.user-form div {
+    margin-bottom: 15px;
+}
+
+.user-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-form button:disabled {
+    background-color: #ccc;
+}
+
+/* Styles for ReviewList component */
+.review-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.review-list p {
+    margin: 0;
+    color: #333;
+}
+
+.user-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin: 10px 0;
+}
+
+.user-list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.user-list a:hover {
+    text-decoration: underline;
+}
+
+.user-display {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-display h1 {
+    color: #333;
+}
