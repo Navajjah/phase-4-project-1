@@ -11,27 +11,35 @@ class ReviewList(Resource):
     def post(self):
         data = request.get_json()
 
-        if not all (key in data for key in ['content','rating', 'book_id', 'user_id']):
+        if not all(key in data for key in ['content', 'rating', 'book_id', 'user_id']):
             return {'message': 'Missing required fields'}, 400
+        
+        
+        if not isinstance(data['rating'], (int, float)) or not (1 <= data['rating'] <= 5):
+            return {'message': 'Rating must be a number between 1 and 5'}, 400
+
         new_review = Review(
             content=data['content'],
             rating=data['rating'],
             book_id=data['book_id'],
-            user_id=data['user_id']
+            user_id=data['user_id']  
         )
         db.session.add(new_review)
         db.session.commit()
-        return jsonify(new_review.to_dict())
+        return jsonify(new_review.to_dict()), 201  
 
 class ReviewDetail(Resource):
-    def put(self,review_id):
+    def get(self, review_id):
+        review = Review.query.get(review_id)
+        if not review:
+            return {'message': 'Review not found'}, 404
+        return jsonify(review.to_dict()), 200
+
+    def put(self, review_id):
         data = request.get_json()
         review = Review.query.get(review_id)
         if not review:
             return {'message': 'Review not found'}, 404
-        
-        if 'user_id' not in data or data['user_id'] != review.user_id:
-            return {'message': 'Unauthorized edit of this review'}, 403
 
         if 'content' in data:
             review.content = data['content']
@@ -40,14 +48,12 @@ class ReviewDetail(Resource):
         if 'book_id' in data:
             review.book_id = data['book_id']
         db.session.commit()
-        return jsonify(review.to_dict()), 200
+        return jsonify(review.to_dict()), 200  
     
-    def delete(self,review_id):
-        data = request.get_json()
+    def delete(self, review_id):
         review = Review.query.get(review_id)
         if not review:
             return {'message': 'Review not found'}, 404
-        if 'user_id' not in data or data['user_id'] != review.user_id:
-            return {'message': 'Unauthorized deletion of this review'}, 403
         db.session.delete(review)
         db.session.commit()
+        return {'message': 'Review deleted'}, 200

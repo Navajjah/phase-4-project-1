@@ -20,11 +20,21 @@ const NewReviewForm = ({ reviewToEdit, onReviewSubmit }) => {
                 user_id: reviewToEdit ? reviewToEdit.user_id : '',
             }}
             validationSchema={validationSchema}
-            onSubmit={onReviewSubmit}
+            onSubmit={async (values, { setSubmitting, setStatus }) => {
+                try {
+                    await onReviewSubmit(values);
+                    setStatus({ success: true });
+                } catch (error) {
+                    setStatus({ success: false, message: 'Submission failed' });
+                } finally {
+                    setSubmitting(false);
+                }
+            }}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, status }) => (
                 <div className='review-form'>
                     <h2>{reviewToEdit ? "Edit Review" : "Add a Review"}</h2>
+                    {status && status.message && <p>{status.message}</p>}
                     <Form>
                         <div>
                             <label htmlFor="content">Content</label>
@@ -54,4 +64,4 @@ const NewReviewForm = ({ reviewToEdit, onReviewSubmit }) => {
     )
 }
 
-export default NewReviewForm
+export default NewReviewForm;

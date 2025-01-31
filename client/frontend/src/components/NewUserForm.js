@@ -3,25 +3,31 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import './NewUserForm.css'
 
-const NewUserForm = () => {
+const NewUserForm = ({ onUserSubmit }) => {
   const validationSchema = Yup.object({
     username: Yup.string().required('Username is required'),
   })
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm, setStatus }) => {
+    try {
+      await fetch('http://127.0.0.1:5000/users', {
     fetch('http://127.0.0.1:5000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),
-    }).then(resp => resp.json())
+    });
+    const data = await resp.json();
       .then(data => {
         console.log('User added:', data)
-        setSubmitting(false)
+        setStatus({ success: true });
+      setSubmitting(false);
         resetForm()
-      })
+      } catch (error) {
+      setStatus({ success: false, message: 'Submission failed. Please try again.' });
+    }
   }
 
-  return (
+  return (  
   <Formik
     initialValues={{ username: '' }}
     validationSchema={validationSchema}

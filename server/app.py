@@ -2,7 +2,7 @@ from flask import Flask
 # from flask_restful import Resource
 from config import app, db, api
 from resources.books import BookList, BookDetail
-from resources.review import ReviewList
+from resources.review import ReviewList, ReviewDetail
 from resources.user import UserList, UserDetail
 
 
@@ -15,6 +15,7 @@ api.add_resource(BookList, '/books')
 api.add_resource(BookDetail, '/books/<int:book_id>')
 
 api.add_resource(ReviewList, '/reviews')
+api.add_resource(ReviewDetail, '/reviews/<int:review_id>')
 
 api.add_resource(UserList, '/users')
 api.add_resource(UserDetail, '/users/<int:user_id>')
