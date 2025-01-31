@@ -16,7 +16,8 @@ class ReviewList(Resource):
         new_review = Review(
             content=data['content'],
             rating=data['rating'],
-            book_id=data['book_id']
+            book_id=data['book_id'],
+            user_id=data['user_id']
         )
         db.session.add(new_review)
         db.session.commit()
@@ -28,6 +29,10 @@ class ReviewDetail(Resource):
         review = Review.query.get(review_id)
         if not review:
             return {'message': 'Review not found'}, 404
+        
+        if 'user_id' not in data or data['user_id'] != review.user_id:
+            return {'message': 'Unauthorized edit of this review'}, 403
+
         if 'content' in data:
             review.content = data['content']
         if 'rating' in data:
@@ -38,8 +43,11 @@ class ReviewDetail(Resource):
         return jsonify(review.to_dict()), 200
     
     def delete(self,review_id):
+        data = request.get_json()
         review = Review.query.get(review_id)
         if not review:
             return {'message': 'Review not found'}, 404
+        if 'user_id' not in data or data['user_id'] != review.user_id:
+            return {'message': 'Unauthorized deletion of this review'}, 403
         db.session.delete(review)
         db.session.commit()

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './components/Home'
 import Navbar from './components/NavBar'
 import BookList from './components/BookList'
 import BookDetail from './components/BookDetail'
@@ -9,14 +10,14 @@ import UserDetail from './components/UserDetail'
 import NewUserForm from './components/NewUserForm'
 import ReviewList from './components/ReviewList'
 import NewReviewForm from './components/NewReviewForm'
-import './styles.css'; // Importing the new styles.css
+// import './App.css'
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<BookList />} />
+        <Route path='/' element={<Home />} />
         <Route path='/users' element={<UserList />} />
         <Route path='/reviews' element={<ReviewList />} />
         <Route path='/new-review' element={<NewReviewForm />} />
