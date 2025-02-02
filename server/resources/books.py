@@ -1,15 +1,16 @@
 from flask_restful import Resource
-from flask import request, jsonify
-from config import db
-from models import Book
+from flask import request
+from models import db, Book
 
 class BookList(Resource):
     def get(self):
         books = Book.query.all()
-        return ([book.to_dict() for book in books])
+        return [book.to_dict() for book in books]
     
     def post(self):
         data = request.get_json()
+        if not data or not all(key in data for key in ('title', 'rarity', 'spell_type', 'author', 'hogwarts_class')):
+            return {'error': 'Missing required fields'}, 422
         new_book = Book(
             title=data['title'], 
             rarity=data['rarity'], 
@@ -19,14 +20,14 @@ class BookList(Resource):
         )
         db.session.add(new_book)
         db.session.commit()
-        return jsonify(new_book.to_dict())
+        return new_book.to_dict()
     
 class BookDetail(Resource):
     def get(self, book_id):
         book = Book.query.get(book_id)
         if not book:
             return {'message': 'Book not found'}, 404
-        return jsonify(book.to_dict())
+        return book.to_dict()
     
     def put(self, book_id):
         data = request.get_json()
@@ -44,7 +45,7 @@ class BookDetail(Resource):
         if 'hogwarts_class' in data:
             book.hogwarts_class = data['hogwarts_class']
         db.session.commit()
-        return jsonify(book.to_dict()), 200
+        return book.to_dict(), 200
       
     def delete(self, book_id):
         book = Book.query.get(book_id)
@@ -52,5 +53,5 @@ class BookDetail(Resource):
             return {'message': 'Book not found'}, 404
         db.session.delete(book)
         db.session.commit()
-        return jsonify({'message':'The magic book has been deleted successfully!'})
+        return {'message':'The magic book has been deleted successfully!'}
         

@@ -1,5 +1,5 @@
 import React from 'react'
-import backgroundimg from '../Assets/Images/image7.png'
+import backgroundimg from '../Assets/Images/image10.png'
 import './Home.css'
 
 

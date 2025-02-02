@@ -1,4 +1,3 @@
-// src/components/ReviewDetail.js
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -22,7 +21,7 @@ const ReviewDetail = ({ review, onDelete, onUpdate }) => {
 
   const handleUpdate = (values, { setSubmitting }) => {
     fetch(`http://127.0.0.1:5000/reviews/${review.id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),
     })

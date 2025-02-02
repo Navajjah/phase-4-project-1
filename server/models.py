@@ -1,5 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
-from config import db
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 class Book(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -61,4 +62,5 @@ class User(db.Model, SerializerMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'favorites': [book.to_dict() for book in self.favorites]
         }

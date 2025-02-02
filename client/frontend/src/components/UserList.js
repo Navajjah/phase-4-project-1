@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './UserList.css'
+import NewUserForm from './NewUserForm'
+import feather from '../Assets/icons/quill-drawing-a-line.png'
+
+
 function UserList() {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
@@ -28,8 +32,8 @@ function UserList() {
     }, []);
 
     return (
-        <div>
-            <h1>Hogwarts Students</h1>
+        <div className='user-list-container'>
+            <h1>Hogwarts Students <img src={feather} alt="Feather Icon" className='feather-icon'/></h1>
             {loading && <p>Loading users...</p>}
             {error && <p>Error loading users: {error}</p>}
             <ul className="user-list">
@@ -39,6 +43,7 @@ function UserList() {
                     </li>
                 ))}
             </ul>
+            <NewUserForm />
         </div>
     )
 }

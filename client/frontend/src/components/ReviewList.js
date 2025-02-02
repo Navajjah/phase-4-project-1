@@ -1,6 +1,8 @@
 // src/components/ReviewList.js
 import React, { useEffect, useState } from 'react'
 import ReviewDetail from './ReviewDetail'
+import NewReviewForm from './NewReviewForm'
+import './ReviewList.css'
 
 function ReviewList() {
   const [reviews, setReviews] = useState([])
@@ -21,9 +23,9 @@ function ReviewList() {
   }
 
   return (
-    <div>
+    <div className='review-list-container'>
       <h1>Reviews</h1>
-      <ul>
+      <ul className='review-list'>
         {reviews.map(review => (
           <li key={review.id}>
             <ReviewDetail
@@ -34,6 +36,7 @@ function ReviewList() {
           </li>
         ))}
       </ul>
+      <NewReviewForm />
     </div>
   )
 }

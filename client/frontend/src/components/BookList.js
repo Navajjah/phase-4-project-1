@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './BookList.css';
+import NewBookForm from './NewBookForm';
 
 function BookList() {
     const [books, setBooks] = useState([]);
@@ -27,7 +28,7 @@ function BookList() {
     }, []);
 
     return (
-        <div>
+        <div className='book-list-container'>
             <h1>Books</h1>
             {loading && <p>Loading books...</p>}
             {error && <p>Error: {error}</p>}
@@ -38,6 +39,7 @@ function BookList() {
                     </li>
                 ))}
             </ul>
+            <NewBookForm />
         </div>
     );
 }

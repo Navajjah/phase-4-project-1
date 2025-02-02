@@ -1,18 +1,18 @@
 from flask_restful import Resource
-from flask import request, jsonify
-from config import db
-from models import Review
+from flask import request
+from models import db, Review
+
 
 class ReviewList(Resource):
     def get(self):
         reviews = Review.query.all()
-        return jsonify([review.to_dict() for review in reviews])
+        return [review.to_dict() for review in reviews]
     
     def post(self):
         data = request.get_json()
 
         if not all(key in data for key in ['content', 'rating', 'book_id', 'user_id']):
-            return {'message': 'Missing required fields'}, 400
+            return {'message': 'Missing required fields'}, 422
         
         
         if not isinstance(data['rating'], (int, float)) or not (1 <= data['rating'] <= 5):
@@ -26,16 +26,16 @@ class ReviewList(Resource):
         )
         db.session.add(new_review)
         db.session.commit()
-        return jsonify(new_review.to_dict()), 201  
+        return new_review.to_dict(), 201  
 
 class ReviewDetail(Resource):
     def get(self, review_id):
         review = Review.query.get(review_id)
         if not review:
             return {'message': 'Review not found'}, 404
-        return jsonify(review.to_dict()), 200
+        return review.to_dict(), 200
 
-    def put(self, review_id):
+    def patch(self, review_id):
         data = request.get_json()
         review = Review.query.get(review_id)
         if not review:
@@ -48,7 +48,7 @@ class ReviewDetail(Resource):
         if 'book_id' in data:
             review.book_id = data['book_id']
         db.session.commit()
-        return jsonify(review.to_dict()), 200  
+        return review.to_dict(), 200  
     
     def delete(self, review_id):
         review = Review.query.get(review_id)

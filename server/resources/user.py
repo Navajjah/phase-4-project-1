@@ -1,12 +1,11 @@
 from flask_restful import Resource
-from flask import request, jsonify
-from config import db
-from models import User
+from flask import request 
+from models import User,db
 
 class UserList(Resource):
     def get(self):
         users = User.query.all()
-        return jsonify([user.to_dict() for user in users])
+        return [user.to_dict() for user in users]
     
     def post(self):
         data = request.get_json()
@@ -19,14 +18,14 @@ class UserList(Resource):
         new_user = User(username=data['username'])
         db.session.add(new_user)
         db.session.commit()
-        return jsonify(new_user.to_dict()), 201
+        return new_user.to_dict(), 201
     
 class UserDetail(Resource):
         def get(self, user_id):
             user = User.query.get(user_id)
             if not user:
                 return {'message': 'User not found'}, 404
-            return jsonify(user.to_dict())
+            return user.to_dict()
         
         def put(self, user_id):
             user = User.query.get(user_id)
@@ -40,7 +39,7 @@ class UserDetail(Resource):
                     return {'message': 'Username already exists'}, 400
                 user.username = data['username']
             db.session.commit()
-            return jsonify(user.to_dict()), 200
+            return user.to_dict(), 200
         
         def delete(self, user_id):
             user = User.query.get(user_id)
@@ -48,5 +47,5 @@ class UserDetail(Resource):
                 return {'message': 'User not found'}, 404
             db.session.delete(user)
             db.session.commit()
-            return jsonify({'message': 'User has been deleted successfully!'}), 200
+            return {'message': 'User has been deleted successfully!'}, 200
     

@@ -10,7 +10,7 @@ import UserDetail from './components/UserDetail'
 import NewUserForm from './components/NewUserForm'
 import ReviewList from './components/ReviewList'
 import NewReviewForm from './components/NewReviewForm'
-// import './App.css'
+//import './App.css'
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/books' element={<BookList />} />
         <Route path='/users' element={<UserList />} />
         <Route path='/reviews' element={<ReviewList />} />
         <Route path='/new-review' element={<NewReviewForm />} />
