@@ -5,7 +5,7 @@ Grimoireteque is a wizarding library platform, that borrows from the Harry Potte
 - Backend: https://github.com/Navajjah/phase-4-project-backend
 - Backend deployed site: https://phase-4-project-backend-q0g2.onrender.com/
 - Frontend: https://github.com/Navajjah/phase-4-project-frontend
-- Frontend deployed site: https://phase-4-project-frontend-five.vercel.app/
+- Frontend deployed site: https://phase-4-project-frontend-4fib.vercel.app/
 
 
 ## Features
